@@ -1,0 +1,5 @@
+﻿  tbitfield.cpp
+C:\Users\8\Desktop\mp2-lab1-set\src\tbitfield.cpp(40): warning C4554: "<<": проверьте приоритет операторов на ошибки; для уточнения приоритета используйте скобки
+  tset.cpp
+  Создание кода...
+  set.vcxproj -> C:\Users\8\Desktop\mp2-lab1-set\sln\vc17\lib\Debug\set.lib
