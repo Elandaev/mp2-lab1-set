@@ -49,24 +49,45 @@ int TBitField::GetLength(void) const // получить длину (к-во б�
 
 void TBitField::SetBit(const int n) // установить бит
 {
-	pMem[GetMemIndex(n)] |= GetMemMask(n);
+	if (n<0 || n>BitLen) {
+		throw(" ");
+	}
+	else {
+		pMem[GetMemIndex(n)] |= GetMemMask(n);
+	}
 }
 
 void TBitField::ClrBit(const int n) // очистить бит
 {
-	pMem[GetMemIndex(n)] &= ~GetMemMask(n);
+	if (n<0 || n>BitLen) {
+		throw(" ");
+	}
+	else {
+		pMem[GetMemIndex(n)] &= ~GetMemMask(n);
+	}
 }
 
 int TBitField::GetBit(const int n) const // получить значение бита
 {
-	return pMem[GetMemIndex(n)] & GetMemMask(n);
+	if (n<0 || n>BitLen) {
+		throw(" ");
+	}
+	else {
+		return pMem[GetMemIndex(n)] & GetMemMask(n);
+	}
 }
 
 // битовые операции
 
 TBitField& TBitField::operator=(const TBitField &bf) // присваивание
 {
-  return *this;
+	this->BitLen = bf.BitLen;
+	this->MemLen = bf.MemLen;
+	TELEM *tmp = new TELEM[MemLen];
+	for (int i = 0; i < MemLen; i++) {
+		tmp[i] = bf.pMem[i];
+	}
+	return *this;
 }
 
 int TBitField::operator==(const TBitField &bf) const // сравнение
