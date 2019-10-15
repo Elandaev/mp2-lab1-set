@@ -189,12 +189,22 @@ TBitField TBitField::operator~(void) // отрицание
 
 istream &operator>>(istream &istr, TBitField &bf) // ввод
 {
-
+	int temp;
+	for (int i = 0; i < bf.BitLen; i++) {
+		istr >> temp;
+		if (temp == 1) bf.SetBit(i);
+		else bf.ClrBit(i);
+	}
 	return istr;
 }
 
 
 ostream &operator<<(ostream &ostr, const TBitField &bf) // вывод
 {
+	for (int i = 0; i < bf.BitLen; i++) {
+		if (bf.GetBit(i)) {
+			ostr << i << " ";
+		}
+	}
 	return ostr;
 }
