@@ -4,7 +4,7 @@
 //   Переработано для Microsoft Visual Studio 2008 Сысоевым А.В. (19.04.2015)
 //
 // Битовое поле
-
+#include <iomanip>
 #include "tbitfield.h"
 
 TBitField::TBitField(int len)
@@ -201,8 +201,11 @@ istream &operator>>(istream &istr, TBitField &bf) // ввод
 
 ostream &operator<<(ostream &ostr, const TBitField &bf) // вывод
 {
+	int count = 0;
 	for (int i = 0; i < bf.BitLen; i++) {
 		if (bf.GetBit(i)) {
+			count++;
+			if (count % 10 == 0) { cout << endl; }
 			ostr << i << " ";
 		}
 	}
