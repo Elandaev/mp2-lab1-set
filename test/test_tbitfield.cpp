@@ -2,6 +2,25 @@
 
 #include <gtest.h>
 
+TEST(TBitField, invert) {
+	const int size = 3;
+	TBitField bf(size), bf2(size), bf3(size);
+	bf.SetBit(2);
+	bf2 = ~bf;
+	bf3.SetBit(0);
+	bf3.SetBit(1);
+	EXPECT_EQ(bf3, bf2);
+}
+
+TEST(TBitField, can_check_not_eq) {
+	const int size = 3;
+	TBitField bf(size), bf2(size);
+	bf.SetBit(2);
+	bf2.SetBit(0);
+	bf2.SetBit(1);
+	EXPECT_FALSE(bf == bf2);
+}
+
 TEST(TEST, test)
 {
   ASSERT_EQ(0, 0);

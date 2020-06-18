@@ -60,31 +60,38 @@ TSet& TSet::operator=(const TSet &s) // присваивание
 	if (this == &s) {
 		return *this;
 	}
-	this->BitField = s.BitField;
+	this->BitField.operator=(s.BitField);
 	this->MaxPower = s.MaxPower;
+	return *this;
 }
 
 int TSet::operator==(const TSet &s) const // сравнение
 {
-	if (this->MaxPower != s.MaxPower) {
-		return 0;//false
-	}
-	if (this->BitField == s.BitField) {
-		return 1;//true
-	}
-	return 0;//false
+	//if (this->MaxPower != s.MaxPower) {
+	//	return 0;//false
+	//}
+	//if (this->BitField == s.BitField) {
+	//	return 1;//true
+	//}
+	//return 0;//false
+	if ((BitField.operator==(s.BitField) == 1) ||
+		(MaxPower == s.MaxPower)) return 1;
+	return 0;
 }
 
 
 int TSet::operator!=(const TSet &s) const // сравнение
 {
-	if (this->MaxPower != s.MaxPower) {
-		return 1;//true
-	}
-	if (this->BitField != s.BitField) {
-		return 1;//true
-	}
-	return 0;//false
+	//if (this->MaxPower != s.MaxPower) {
+	//	return 1;//true
+	//}
+	//if (this->BitField != s.BitField) {
+	//	return 1;//true
+	//}
+	//return 0;//false
+	if ((BitField.operator!=(s.BitField) == 1) ||
+		(MaxPower != s.MaxPower)) return 1;
+	return 0;
 }
 
 TSet TSet::operator+(const TSet &s) // объединение
@@ -123,8 +130,12 @@ TSet TSet::operator*(const TSet &s) // пересечение
 
 TSet TSet::operator~(void) // дополнение
 {
-	TSet tmp(BitField);
-	return tmp;
+	TSet temp(MaxPower);
+	temp.BitField.operator~();
+	return temp;
+	//TSet tmp(BitField);
+	//tmp.BitField.operator~();
+	//return tmp;
 }
 
 // перегрузка ввода/вывода
